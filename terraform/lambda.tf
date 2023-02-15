@@ -6,7 +6,7 @@ data "archive_file" "build-lambda-a" {
   source_file = "../lambdas/lambdaA/index.js"
 }
 
-data "archive_file"build-lambda-b" {
+data "archive_file" "build-lambda-b" {
   type        = "zip"
   output_path = "../lambdas/lambdaB/buildB.zip"
   source_file = "../lambdas/lambdaB/index.js"
@@ -41,7 +41,7 @@ resource "aws_lambda_function" "lambdaA" {
   function_name    = "step-functions-lambda-a"
   role             = "${aws_iam_role.iam_lambdas.arn}"
   handler          = "index.handler"
-  runtime          = "nodejs8.10"
+  runtime          = "nodejs16.x"
 }
 
 resource "aws_lambda_function" "lambdaB" {
@@ -49,5 +49,5 @@ resource "aws_lambda_function" "lambdaB" {
   function_name    = "step-functions-lambda-b"
   role             = "${aws_iam_role.iam_lambdas.arn}"
   handler          = "index.handler"
-  runtime          = "nodejs8.10"
+  runtime          = "nodejs16.x"
 }
